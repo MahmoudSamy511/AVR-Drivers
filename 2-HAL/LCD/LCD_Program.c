@@ -8,7 +8,7 @@
 /*Lib Layer*/
 #include"../../5-LIB/TYPEDEF.h"
 #include"../../5-LIB/ERROR_STATE.h"
-#define F_CPU 8000000UL
+#define F_CPU 16000000UL
 #include<util/delay.h>
 /*MCAL*/
 #include"../../1-MCAL/DIO/DIO_interface.h"
@@ -26,7 +26,14 @@ ES_t LCD_enu_SendCmnd(u8 Copy_u8_Cmdn){
         /* RW = 0 */
         DIO_enu_SetPinValue(LCD_U8_RW_PORT,LCD_U8_RW_PIN,DIO_U8_LOW);
         /*Write Command*/
-        DIO_enu_SetPortValue(LCD_U8_DATA_PORT,Copy_u8_Cmdn);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D7,(Copy_u8_Cmdn>> SHIFT_7BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D6,(Copy_u8_Cmdn>> SHIFT_6BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D5,(Copy_u8_Cmdn>> SHIFT_5BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D4,(Copy_u8_Cmdn>> SHIFT_4BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D3,(Copy_u8_Cmdn>> SHIFT_3BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D2,(Copy_u8_Cmdn>> SHIFT_2BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D1,(Copy_u8_Cmdn>> SHIFT_1BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D0,(Copy_u8_Cmdn>> SHIFT_0BIT) & MASK_BIT);
         /* E = 1 */
         DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_HIGH );
         _delay_us(1);
@@ -40,14 +47,20 @@ ES_t LCD_enu_SendCmnd(u8 Copy_u8_Cmdn){
         /* RW = 0 */
         DIO_enu_SetPinValue(LCD_U8_RW_PORT,LCD_U8_RW_PIN,DIO_U8_LOW);
         /*Write Command*/
-        DIO_enu_SetPortValue(LCD_U8_DATA_PORT,Copy_u8_Cmdn);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D7,(Copy_u8_Cmdn>> SHIFT_7BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D6,(Copy_u8_Cmdn>> SHIFT_6BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D5,(Copy_u8_Cmdn>> SHIFT_5BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D4,(Copy_u8_Cmdn>> SHIFT_4BIT) & MASK_BIT);
         /* E = 1 */
         DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_HIGH );
         _delay_us(1);
         /* E = 0 */
         DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_LOW );
         /*Write the rest of the cmnd*/
-        DIO_enu_SetPortValue(LCD_U8_DATA_PORT,Copy_u8_Cmdn << SHIFT_4BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D7,(Copy_u8_Cmdn>> SHIFT_3BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D6,(Copy_u8_Cmdn>> SHIFT_2BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D5,(Copy_u8_Cmdn>> SHIFT_1BIT) & MASK_BIT);
+        DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D4,(Copy_u8_Cmdn>> SHIFT_0BIT) & MASK_BIT);
         /* E = 1 */
         DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_HIGH );
         _delay_us(1);
@@ -64,7 +77,14 @@ ES_t LCD_enu_SendChar(u8 Copy_u8_Char){
     /* RW = 0 */
     DIO_enu_SetPinValue(LCD_U8_RW_PORT,LCD_U8_RW_PIN,DIO_U8_LOW);
     /*Write Char*/
-    DIO_enu_SetPortValue(LCD_U8_DATA_PORT,Copy_u8_Char);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D7,(Copy_u8_Char>> SHIFT_7BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D6,(Copy_u8_Char>> SHIFT_6BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D5,(Copy_u8_Char>> SHIFT_5BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D4,(Copy_u8_Char>> SHIFT_4BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D3,(Copy_u8_Char>> SHIFT_3BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D2,(Copy_u8_Char>> SHIFT_2BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D1,(Copy_u8_Char>> SHIFT_1BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D0,(Copy_u8_Char>> SHIFT_0BIT) & MASK_BIT);
     /* E = 1 */
     DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_HIGH );
     _delay_us(1);
@@ -77,14 +97,20 @@ ES_t LCD_enu_SendChar(u8 Copy_u8_Char){
     /* RW = 0 */
     DIO_enu_SetPinValue(LCD_U8_RW_PORT,LCD_U8_RW_PIN,DIO_U8_LOW);
     /*Write Char*/
-    DIO_enu_SetPortValue(LCD_U8_DATA_PORT,Copy_u8_Char);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D7,(Copy_u8_Char>> SHIFT_7BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D6,(Copy_u8_Char>> SHIFT_6BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D5,(Copy_u8_Char>> SHIFT_5BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D4,(Copy_u8_Char>> SHIFT_4BIT) & MASK_BIT);
     /* E = 1 */
     DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_HIGH );
     _delay_us(1);
     /* E = 0 */
     DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_LOW );
     /*Write Char*/
-    DIO_enu_SetPortValue(LCD_U8_DATA_PORT,Copy_u8_Char << SHIFT_4BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D7,(Copy_u8_Char>> SHIFT_3BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D6,(Copy_u8_Char>> SHIFT_2BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D5,(Copy_u8_Char>> SHIFT_1BIT) & MASK_BIT);
+    DIO_enu_SetPinValue(LCD_U8_DATA_PORT,D4,(Copy_u8_Char>> SHIFT_0BIT) & MASK_BIT);
     /* E = 1 */
     DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_HIGH );
     _delay_us(1);
@@ -154,6 +180,7 @@ ES_t LCD_enu_Init(void){
     LCD_enu_SendCmnd(DIS_ON_CURSOR_ON_BLINKING);
     LCD_enu_SendCmnd(ENTRY_MOOD);
     LCD_enu_SendCmnd(DISPLAY_CLEAR);
+    _delay_ms(2);
     return SATE_OK;
     #endif
 }

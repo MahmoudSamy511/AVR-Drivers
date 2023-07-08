@@ -26,16 +26,23 @@
                     2- LCD_U8_MODE_4BIT */
 
 #define LCD_U8_MODE             LCD_U8_MODE_4BIT
-
+/**********************Control Port & Pins****************************/
 #define LCD_U8_RS_PORT          DIO_U8_PORTA
 #define LCD_U8_RW_PORT          DIO_U8_PORTA
 #define LCD_U8_E_PORT           DIO_U8_PORTA
-
-#define LCD_U8_RS_PIN           DIO_U8_PIN2
-#define LCD_U8_RW_PIN           DIO_U8_PIN3
-#define LCD_U8_E_PIN            DIO_U8_PIN4
-
-#define LCD_U8_DATA_PORT        DIO_U8_PORTB
+#define LCD_U8_RS_PIN           DIO_U8_PIN1
+#define LCD_U8_RW_PIN           DIO_U8_PIN0
+#define LCD_U8_E_PIN            DIO_U8_PIN2
+/**********************Data Port & Pins****************************/
+#define LCD_U8_DATA_PORT        DIO_U8_PORTA
+#define D7						DIO_U8_PIN6
+#define D6						DIO_U8_PIN5
+#define D5						DIO_U8_PIN4
+#define D4						DIO_U8_PIN3
+#define D3						DIO_U8_PIN7
+#define D2						DIO_U8_PIN7
+#define D1						DIO_U8_PIN7
+#define D0						DIO_U8_PIN7
 
 
 

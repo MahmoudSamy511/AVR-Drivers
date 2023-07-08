@@ -24,16 +24,26 @@
 #define ADDRESS_OF_LINE1               0x80
 #define ADDRESS_OF_LINE2               0xc0
 
-#define CHAR_0                          0
-#define CHAR_1                          1                 
-#define CHAR_2                          2
-#define CHAR_3                          3
-#define CHAR_4                          4
-#define CHAR_5                          5
-#define CHAR_6                          6
-#define CHAR_7                          7
+//#define CHAR_0                          0
+//#define CHAR_1                          1
+//#define CHAR_2                          2
+//#define CHAR_3                          3
+//#define CHAR_4                          4
+//#define CHAR_5                          5
+//#define CHAR_6                          6
+//#define CHAR_7                          7
 
-#define SHIFT_4BIT                      4
+#define SHIFT_7BIT						7
+#define SHIFT_6BIT						6
+#define SHIFT_5BIT						5
+#define SHIFT_4BIT						4
+#define SHIFT_3BIT						3
+#define SHIFT_2BIT						2
+#define SHIFT_1BIT						1
+#define SHIFT_0BIT						0
+
+
+#define MASK_BIT       				1
 
 #define ADDRESS_OF_CGRAM             0x40
 #define MAX_CHARACTERS                8
