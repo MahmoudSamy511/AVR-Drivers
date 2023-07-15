@@ -2,8 +2,8 @@
 #define ERROR_STATE_H
 
 typedef enum {
-        SATE_NOT_OK ,
-        SATE_OK
+        STATE_NOT_OK ,
+        STATE_OK
 }ES_t;
 
 

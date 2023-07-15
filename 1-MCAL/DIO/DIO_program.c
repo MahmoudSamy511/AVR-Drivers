@@ -36,11 +36,11 @@ ES_t DIO_enu_Init(void){
 
     DIO_U8_PORTD_REG = Conc(DIO_U8_PD7_INITIAL_VALUE,DIO_U8_PD6_INITIAL_VALUE,DIO_U8_PD5_INITIAL_VALUE,DIO_U8_PD4_INITIAL_VALUE,
                             DIO_U8_PD3_INITIAL_VALUE,DIO_U8_PD2_INITIAL_VALUE,DIO_U8_PD1_INITIAL_VALUE,DIO_U8_PD0_INITIAL_VALUE);
-    return SATE_OK;
+    return STATE_OK;
 }
 ES_t DIO_enu_SetPinDirection (u8 Copy_u8_PortId, u8 Copy_u8_PinId,u8 Copy_u8_PinDirection)
 {
-    u8 Local_u8_ErrorState = SATE_OK;
+    u8 Local_u8_ErrorState = STATE_OK;
     if((Copy_u8_PortId <= DIO_U8_PORTD) && (Copy_u8_PinId <= DIO_U8_PIN7) && ((Copy_u8_PinDirection == DIO_U8_OUTPUT)||(Copy_u8_PinDirection == DIO_U8_INPUT))){
         switch (Copy_u8_PortId)
         {
@@ -76,13 +76,13 @@ ES_t DIO_enu_SetPinDirection (u8 Copy_u8_PortId, u8 Copy_u8_PinId,u8 Copy_u8_Pin
     }
     else
     {
-        Local_u8_ErrorState = SATE_NOT_OK;
+        Local_u8_ErrorState = STATE_NOT_OK;
     }
     return Local_u8_ErrorState;
 }
 
 ES_t DIO_enu_SetPinValue(u8 Copy_u8_PortId, u8 Copy_u8_PinId,u8 Copy_u8_PinValue){
-    u8 Local_u8_ErrorState = SATE_OK;
+    u8 Local_u8_ErrorState = STATE_OK;
     if((Copy_u8_PortId <= DIO_U8_PORTD) && (Copy_u8_PinId <= DIO_U8_PIN7) && ((Copy_u8_PinValue == DIO_U8_HIGH)||(Copy_u8_PinValue == DIO_U8_LOW))){
         switch (Copy_u8_PortId)
         {
@@ -118,13 +118,13 @@ ES_t DIO_enu_SetPinValue(u8 Copy_u8_PortId, u8 Copy_u8_PinId,u8 Copy_u8_PinValue
     }
     else
     {
-        Local_u8_ErrorState = SATE_NOT_OK;
+        Local_u8_ErrorState = STATE_NOT_OK;
     }
     return Local_u8_ErrorState;
 }
 
 ES_t DIO_enu_GetPinValue(u8 Copy_u8_PortId, u8 Copy_u8_PinId,u8 * Copy_pu8_ReturnPinValue){
-    u8 Local_u8_ErrorState = SATE_OK;
+    u8 Local_u8_ErrorState = STATE_OK;
     u8 Local_u8_PinValue ;
     if((Copy_u8_PortId <= DIO_U8_PORTD) && (Copy_u8_PinId <= DIO_U8_PIN7) && (Copy_pu8_ReturnPinValue != NULL))
     {
@@ -150,13 +150,13 @@ ES_t DIO_enu_GetPinValue(u8 Copy_u8_PortId, u8 Copy_u8_PinId,u8 * Copy_pu8_Retur
     }
     else
     {
-        Local_u8_ErrorState = SATE_NOT_OK;
+        Local_u8_ErrorState = STATE_NOT_OK;
     }
     return Local_u8_ErrorState;
 }
 
 ES_t DIO_enu_SetPortDirection(u8 Copy_u8_PortId, u8 Copy_u8_PortDirection){
-    u8 Local_u8_ErrorState = SATE_OK;
+    u8 Local_u8_ErrorState = STATE_OK;
     if((Copy_u8_PortId <= DIO_U8_PORTD) &&((Copy_u8_PortDirection == DIO_U8_OUTPUT)||(Copy_u8_PortDirection == DIO_U8_INPUT))){
         switch (Copy_u8_PortId)
         {
@@ -190,13 +190,13 @@ ES_t DIO_enu_SetPortDirection(u8 Copy_u8_PortId, u8 Copy_u8_PortDirection){
         break;
         }
     }else{
-        Local_u8_ErrorState = SATE_NOT_OK;
+        Local_u8_ErrorState = STATE_NOT_OK;
     }
     return Local_u8_ErrorState;
 }
 
 ES_t DIO_enu_SetPortValue(u8 Copy_u8_PortId, u8 Copy_u8_PortValue){
-	u8 Local_u8_ErrorState = SATE_OK;
+	u8 Local_u8_ErrorState = STATE_OK;
 	    if((Copy_u8_PortId <= DIO_U8_PORTD)){
 	        switch (Copy_u8_PortId)
 	        {
@@ -206,13 +206,13 @@ ES_t DIO_enu_SetPortValue(u8 Copy_u8_PortId, u8 Copy_u8_PortValue){
 	        case DIO_U8_PORTD:DIO_U8_PORTD_REG = Copy_u8_PortValue; break;
 	        }
 	    }else{
-	        Local_u8_ErrorState = SATE_NOT_OK;
+	        Local_u8_ErrorState = STATE_NOT_OK;
 	    }
 	    return Local_u8_ErrorState;
 }
 
 ES_t DIO_enu_GetPortValue(u8 Copy_u8_PortId, u8 * Copy_u8_ReturnPortValue){
-    u8 Local_u8_ErrorState = SATE_OK;
+    u8 Local_u8_ErrorState = STATE_OK;
     if((Copy_u8_PortId<= DIO_U8_PORTD) && (Copy_u8_ReturnPortValue != NULL)){
         switch (Copy_u8_PortId)
         {
@@ -223,7 +223,7 @@ ES_t DIO_enu_GetPortValue(u8 Copy_u8_PortId, u8 * Copy_u8_ReturnPortValue){
         }
     }
     else{
-        Local_u8_ErrorState = SATE_NOT_OK;
+        Local_u8_ErrorState = STATE_NOT_OK;
     }
     return Local_u8_ErrorState;
 }

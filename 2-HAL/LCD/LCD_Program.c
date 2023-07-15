@@ -39,7 +39,7 @@ ES_t LCD_enu_SendCmnd(u8 Copy_u8_Cmdn){
         _delay_us(1);
         /* E = 0 */
         DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_LOW );
-        return SATE_OK;
+        return STATE_OK;
     #elif LCD_U8_MODE == LCD_U8_MODE_4BIT
     /*Send Command at 4-bit mode*/
         /* RS = 0 */
@@ -66,7 +66,7 @@ ES_t LCD_enu_SendCmnd(u8 Copy_u8_Cmdn){
         _delay_us(1);
         /* E = 0 */
          DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_LOW );
-         return SATE_OK;
+         return STATE_OK;
     #endif
 }
 
@@ -116,14 +116,14 @@ ES_t LCD_enu_SendChar(u8 Copy_u8_Char){
     _delay_us(1);
     /* E = 0 */
     DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_LOW );
-    return SATE_OK;
+    return STATE_OK;
     #endif
 }
 ES_t LCD_enu_SendString(u8 * Copy_pu8_String){
     for(u8 i ; Copy_pu8_String[i] != '\0' ; i++ ){
         LCD_enu_SendChar(Copy_pu8_String[i]);
     }
-    return SATE_OK;
+    return STATE_OK;
 }
 
 ES_t LCD_enu_SendNum(u32 Copy_u32_Num){
@@ -141,7 +141,7 @@ ES_t LCD_enu_SendNum(u32 Copy_u32_Num){
 			LCD_enu_SendChar(Local_u8_numArr[Local_u8_iterator2]+'0');
 		}
     }
-    return SATE_OK;
+    return STATE_OK;
 }
 ES_t LCD_enu_SetCursor(u8 Copy_u8_LineNum,u8 Copy_u8_Location){
     if(Copy_u8_Location<=39){
@@ -149,13 +149,13 @@ ES_t LCD_enu_SetCursor(u8 Copy_u8_LineNum,u8 Copy_u8_Location){
     {
     case LINE1:LCD_enu_SendCmnd(ADDRESS_OF_LINE1 + Copy_u8_Location);break;
     case LINE2:LCD_enu_SendCmnd(ADDRESS_OF_LINE2 + Copy_u8_Location);break;
-    default:return SATE_NOT_OK;break;
+    default:return STATE_NOT_OK;break;
     }
     }
     else{
-        return SATE_NOT_OK;
+        return STATE_NOT_OK;
     }
-    return SATE_OK;
+    return STATE_OK;
 }
 ES_t LCD_enu_Init(void){
     #if LCD_U8_MODE == LCD_U8_MODE_8BIT
@@ -181,13 +181,13 @@ ES_t LCD_enu_Init(void){
     LCD_enu_SendCmnd(ENTRY_MOOD);
     LCD_enu_SendCmnd(DISPLAY_CLEAR);
     _delay_ms(2);
-    return SATE_OK;
+    return STATE_OK;
     #endif
 }
 ES_t LCD_enu_Clear(void){
 	LCD_enu_SendCmnd(DISPLAY_CLEAR);
 	 _delay_ms(2);
-	return SATE_OK;
+	return STATE_OK;
 }
 ES_t LCD_enu_CreateCustomChar(u8 Copy_u8_Location, u8 *Copy_pu8_CharArray)
 {
@@ -199,10 +199,10 @@ ES_t LCD_enu_CreateCustomChar(u8 Copy_u8_Location, u8 *Copy_pu8_CharArray)
             LCD_enu_SendChar(Copy_pu8_CharArray[Local_u8_Counter]);
         }
         LCD_enu_SetCursor(0,0);
-        return SATE_OK;
+        return STATE_OK;
     }
     else
         {
-        return SATE_NOT_OK;
+        return STATE_OK;
         }
 }

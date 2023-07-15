@@ -22,7 +22,7 @@ const u8 Keypad_Au8_ColsPins[4] = {KEYPAD_U8_COLUMN1_PIN,KEYPAD_U8_COLUMN2_PIN,K
 
 ES_t Keypad_enu_getKey(u8 *Copy_pu8_ReturnedKey)
 {
-    u8 Local_u8_errorState = SATE_OK,Local_u8_rowsCounter, Local_u8_colsCounter, Local_u8_ReturnedState=0 ,Local_u8_Flag = 0;
+    u8 Local_u8_errorState = STATE_OK,Local_u8_rowsCounter, Local_u8_colsCounter, Local_u8_ReturnedState=0 ,Local_u8_Flag = 0;
     if (Copy_pu8_ReturnedKey != NULL)
     {
     	*Copy_pu8_ReturnedKey = NO_KEY_PRESSED;
@@ -59,7 +59,7 @@ ES_t Keypad_enu_getKey(u8 *Copy_pu8_ReturnedKey)
     }
     else
     {
-        Local_u8_errorState = SATE_NOT_OK;
+        Local_u8_errorState = STATE_NOT_OK;
     }
     return Local_u8_errorState;
 }
