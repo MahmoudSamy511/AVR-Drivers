@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "dio_interface.h": "c",
-        "typedef.h": "c",
-        "error_state.h": "c",
-        "bit_math.h": "c"
-    }
-}
