@@ -1,7 +1,9 @@
-# AVR Drivers Based On [ATmega32]
-## Pin  Diagram 
-![image](https://github.com/MahmoudSamy511/AVR-Drivers/assets/95527475/a727be48-296e-4e76-bd9e-3883125ee2c5)
-
+<div align="center">
+  <h1>AVR Drivers for ATmega32</h1>
+  <p>This README file provides an overview and instructions for using AVR drivers with the ATmega32 microcontroller.</p>
+  <h1>Pin  Diagram </h1>
+  <img src="https://github.com/MahmoudSamy511/AVR-Drivers/assets/95527475/a727be48-296e-4e76-bd9e-3883125ee2c5">
+</div>
 
 ## Table of Contents
 1. Introduction
