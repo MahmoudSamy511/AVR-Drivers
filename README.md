@@ -52,6 +52,6 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
 
   `git clone https://github.com/your_username/avr-drivers-for-atmega32.git`
   
-  Replace `your_username` with your GitHub username.
+  - Replace `your_username` with your GitHub username.
   ## 5. Additional Resources
   - [ATmega32 Datasheet](https://www.microchip.com/en-us/product/ATmega32) - Refer to the official datasheet for detailed information about the ATmega32 microcontroller.
