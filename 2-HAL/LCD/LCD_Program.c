@@ -90,7 +90,7 @@ ES_t LCD_enu_SendChar(u8 Copy_u8_Char){
     _delay_us(1);
     /* E = 0 */
     DIO_enu_SetPinValue(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_LOW );
-    return SATE_OK;
+    return STATE_OK;
     #elif LCD_U8_MODE == LCD_U8_MODE_4BIT
     /* RS = 1 */
     DIO_enu_SetPinValue(LCD_U8_RS_PORT,LCD_U8_RS_PIN,DIO_U8_HIGH);
@@ -158,29 +158,38 @@ ES_t LCD_enu_SetCursor(u8 Copy_u8_LineNum,u8 Copy_u8_Location){
     return STATE_OK;
 }
 ES_t LCD_enu_Init(void){
+    DIO_enu_SetPinDirection(LCD_U8_RS_PORT,LCD_U8_RS_PIN,DIO_U8_OUTPUT);
+    DIO_enu_SetPinDirection(LCD_U8_RW_PORT,LCD_U8_RW_PIN,DIO_U8_OUTPUT);
+    DIO_enu_SetPinDirection(LCD_U8_E_PORT,LCD_U8_E_PIN,DIO_U8_OUTPUT);
+    DIO_enu_SetPinDirection(LCD_U8_DATA_PORT,D7,DIO_U8_OUTPUT);
+    DIO_enu_SetPinDirection(LCD_U8_DATA_PORT,D6,DIO_U8_OUTPUT);
+    DIO_enu_SetPinDirection(LCD_U8_DATA_PORT,D5,DIO_U8_OUTPUT);
+    DIO_enu_SetPinDirection(LCD_U8_DATA_PORT,D4,DIO_U8_OUTPUT);
     #if LCD_U8_MODE == LCD_U8_MODE_8BIT
-    /*Function Set Command*/
+    DIO_enu_SetPinDirection(LCD_U8_DATA_PORT,D3,DIO_U8_OUTPUT);
+    DIO_enu_SetPinDirection(LCD_U8_DATA_PORT,D2,DIO_U8_OUTPUT);
+    DIO_enu_SetPinDirection(LCD_U8_DATA_PORT,D1,DIO_U8_OUTPUT);
+    DIO_enu_SetPinDirection(LCD_U8_DATA_PORT,D0,DIO_U8_OUTPUT);
     _delay_ms(35);
     LCD_enu_SendCmnd(FUN_SET_8BIT_2LINES_5X7);
     _delay_us(40);
-    /*Display On/Off Control*/
     LCD_enu_SendCmnd(DIS_ON_CURSOR_ON_BLINKING);
     _delay_us(40);
-    /*Display Clear*/
     LCD_enu_SendCmnd(DISPLAY_CLEAR);
     _delay_ms(2);
-    /*Entry Mode Set*/
     LCD_enu_SendCmnd(ENTRY_MOOD);
-     return SATE_OK;
+     return STATE_OK;
     #elif LCD_U8_MODE == LCD_U8_MODE_4BIT
-    _delay_ms(20);
-    LCD_enu_SendCmnd(FourBIT_INIT1);
-    LCD_enu_SendCmnd(FourBIT_INIT2);
-    LCD_enu_SendCmnd(D4_D7_2LINES);
+    _delay_ms(35);
+    LCD_enu_SendCmnd(FOURBIT_INIT1);
+    LCD_enu_SendCmnd(FOURBIT_INIT2);
+    LCD_enu_SendCmnd(FUN_SET_4BIT_2LINES_5X7);
+    _delay_us(40);
     LCD_enu_SendCmnd(DIS_ON_CURSOR_ON_BLINKING);
-    LCD_enu_SendCmnd(ENTRY_MOOD);
+    _delay_us(40);
     LCD_enu_SendCmnd(DISPLAY_CLEAR);
     _delay_ms(2);
+    LCD_enu_SendCmnd(ENTRY_MOOD);
     return STATE_OK;
     #endif
 }
