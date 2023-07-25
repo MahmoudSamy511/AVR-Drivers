@@ -2,6 +2,8 @@
   <h1>AVR Drivers Based on [ATmega32] </h1>
   <p>This README file provides an overview and instructions for using drivers of ATmega32 microcontroller.</p>
   <h1>Pin  Diagram </h1>
+  <img src="https://github.com/MahmoudSamy511/AVR-Drivers/assets/95527475/f93e2eb8-090f-4724-825d-20b565e27bb4" alt="Image 1" width="400" height ="331"/>
+  <img src="https://github.com/MahmoudSamy511/AVR-Drivers/assets/95527475/fa65fee4-86d0-46da-8960-d2b1a950ad7d" alt="Image 2" width="400"/>
   <img src="https://github.com/MahmoudSamy511/AVR-Drivers/assets/95527475/a727be48-296e-4e76-bd9e-3883125ee2c5">
 </div>
 
