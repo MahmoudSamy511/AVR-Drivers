@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>AVR Drivers for ATmega32</h1>
-  <p>This README file provides an overview and instructions for using AVR drivers with the ATmega32 microcontroller.</p>
+  <h1>AVR Drivers Based on [ATmega32] </h1>
+  <p>This README file provides an overview and instructions for using drivers of ATmega32 microcontroller.</p>
   <h1>Pin  Diagram </h1>
   <img src="https://github.com/MahmoudSamy511/AVR-Drivers/assets/95527475/a727be48-296e-4e76-bd9e-3883125ee2c5">
 </div>
@@ -49,11 +49,29 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
    **`4. DC Motor:`** For interfacing with  DC Motors Connected to L298N H-bridge.
       
    **`5. Stepper Motor:`** For interfacing with Stepper Motors
+  ## LIB Layer
+   **`1-TYPEDEF.h`** a file has redefined types like (Unsigned char --> u8 ,..).
+   
+   **`2-ErrorState.h`** a file has Enum contain two States [OK,NOT_OK].
+   
+   **`3-BitMath.h`** a file has functions like macro like [GITBIT,SETBIT,..].
+   
 ## 4. How to Use Drivers
+
   To get started with the AVR drivers, clone this repository to your local machine using the following command:
 
-  `git clone https://github.com/your_username/avr-drivers-for-atmega32.git`
+- `git clone https://github.com/your_username/avr-drivers-for-atmega32.git`
   
-  - Replace `your_username` with your GitHub username.
-  ## 5. Additional Resources
+     Replace `your_username` with your GitHub username.
+  
+- Copy the necessary AVR driver files (DIO, UART,LCD,etc..) from the cloned repository to your project directory.
+
+- Include the driver `interface_file.h` in your C source files to use the functions provided by the driver and
+ include any file from LIB layer if you needed. 
+
+- Call the driver initialization functions and use the driver functions in your application code to interact with the microcontroller's peripherals.
+
+- Compile your code using the AVR-GCC compiler and program the ATmega32 microcontroller with the generated HEX file using AVRDUDE or any other AVR programmer software
+  
+## 5. Additional Resources
   - [ATmega32 Datasheet](https://www.microchip.com/en-us/product/ATmega32) - Refer to the official datasheet for detailed information about the ATmega32 microcontroller.
