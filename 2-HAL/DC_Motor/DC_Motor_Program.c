@@ -50,7 +50,7 @@ ES_t DC_Motor_enu_Rotate(u8 Copy_u8_Motor, u8 Copy_u8_Direction)
             DIO_enu_SetPinValue(MOTOR_IN2_PORT, MOTOR_IN2_PIN, DIO_U8_LOW);
             break;
         case CCW:
-            DIO_enu_SetPinValue(MOTOR_ENB_PORT, MOTOR_ENA_PIN, DIO_U8_HIGH);
+            DIO_enu_SetPinValue(MOTOR_ENA_PORT, MOTOR_ENA_PIN, DIO_U8_HIGH);
             DIO_enu_SetPinValue(MOTOR_IN1_PORT, MOTOR_IN1_PIN, DIO_U8_LOW);
             DIO_enu_SetPinValue(MOTOR_IN2_PORT, MOTOR_IN2_PIN, DIO_U8_HIGH);
             
