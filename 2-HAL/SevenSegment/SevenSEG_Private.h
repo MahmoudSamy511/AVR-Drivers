@@ -7,10 +7,12 @@
 #ifndef SEVENSEG_PRIVATE_H
 #define SEVENSEG_PRIVATE_H
 
-#define MASK_BIT 1
+#define MASK_BIT                1
 
-#define INTERNAL  0
-#define EXTERNAL  1
+#define COMMON_ANODE            1
+#define COMMON_CATHODE          0
+#define FARES_KIT               2
+
 
 
 #endif

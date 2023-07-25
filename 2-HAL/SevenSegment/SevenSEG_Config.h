@@ -20,15 +20,16 @@
                      7- DIO_U8_PIN6
                      8- DIO_U8_PIN7 */
 
-/*Options For Enable Pin:       1- INTERNAL
-                                2- EXTERNAL
+/*Options For Enable Pin:       1- COMMON_ANODE
+                                2- COMMON_CATHODE
+                                3- FARES_KIT
 */
-
-/*********Choose Your Enable Pin Mode************/
-#define  SEVEN_SEGMENT_ENABLE_PIN     INTERNAL
+/*********Choose Your Segment Type**************************/
+#define  SEVEN_SEGMENT_TYPE         FARES_KIT
+/*********Choose Your Enable Pin Mode***********************/
 #define  SEVEN_SEGMENT_U8_E_PORT    DIO_U8_PORTC
 #define  SEVEN_SEGMENT_U8_E_PIN     DIO_U8_PIN6
-/*********Choose Your Seven Segment Port & Pins************/
+/*********Choose Your Seven Segment Port & Pins*************/
 #define  SEVEN_SEGMENT_U8_PORT      DIO_U8_PORTA
 #define  PIN_U8_A                   DIO_U8_PIN1
 #define  PIN_U8_B                   DIO_U8_PIN2
