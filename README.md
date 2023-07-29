@@ -62,7 +62,7 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
    
    **`3-BitMath.h`** a file has functions like macro like [GITBIT,SETBIT,..].
    
-## 4. How to Use Drivers
+ ## 4. How to Use Drivers
 
   To get started with the AVR drivers, clone this repository to your local machine using the following command:
 
@@ -79,5 +79,5 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
 
 - Compile your code using the AVR-GCC compiler and program the ATmega32 microcontroller with the generated HEX file using AVRDUDE or any other AVR programmer software
   
-## 5. Additional Resources
+ ## 5. Additional Resources
   - [ATmega32 Datasheet](https://www.microchip.com/en-us/product/ATmega32) - Refer to the official datasheet for detailed information about the ATmega32 microcontroller.
