@@ -19,7 +19,7 @@ ES_t sevenSeg_enu_displayNum(u8 Copy_u8_Num)
 {
     DIO_enu_SetPinDirection(SEVEN_SEGMENT_U8_E_PORT, SEVEN_SEGMENT_U8_E_PIN, DIO_U8_OUTPUT);
     DIO_enu_SetPortDirection(SEVEN_SEGMENT_U8_PORT,DIO_U8_OUTPUT);
-    u8 Local_u8_errorState = SATE_OK;
+    u8 Local_u8_errorState = STATE_OK;
     if(Copy_u8_Num>= 0 && Copy_u8_Num<=9){
         #if SEVEN_SEGMENT_TYPE == COMMON_CATHODE
 	    DIO_enu_SetPinValue(SEVEN_SEGMENT_U8_E_PORT, SEVEN_SEGMENT_U8_E_PIN, DIO_U8_LOW);
@@ -44,7 +44,7 @@ ES_t sevenSeg_enu_displayNum(u8 Copy_u8_Num)
 
 
     }else{
-        Local_u8_errorState = SATE_NOT_OK;
+        Local_u8_errorState = STATE_NOT_OK;
     }
     return Local_u8_errorState;
 }
