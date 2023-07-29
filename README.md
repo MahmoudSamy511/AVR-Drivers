@@ -40,7 +40,11 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
    
    **`3. ADC Driver:`** For Analog to Digital Conversion using the onboard ADC.
    
-   **`4. Timer Driver:`** For utilizing the Timer/Counter modules for various timing and PWM applications.
+   **`4. EXTI Driver:`** For handling External Interrupts.
+   
+   **`5. GI Driver:`** For Controlling Global Interrupt.
+   
+   **`6. Timer Driver:`** For utilizing the Timer/Counter modules for various timing and PWM applications.
   ## HAL Layer
    **`1. LCD:`** For interfacing with Liquad Crystal Display 2X16 (lm016l).
       
