@@ -125,27 +125,14 @@ ES_t DIO_enu_SetPinValue(u8 Copy_u8_PortId, u8 Copy_u8_PinId,u8 Copy_u8_PinValue
 
 ES_t DIO_enu_GetPinValue(u8 Copy_u8_PortId, u8 Copy_u8_PinId,u8 * Copy_pu8_ReturnPinValue){
     u8 Local_u8_ErrorState = STATE_OK;
-    u8 Local_u8_PinValue ;
     if((Copy_u8_PortId <= DIO_U8_PORTD) && (Copy_u8_PinId <= DIO_U8_PIN7) && (Copy_pu8_ReturnPinValue != NULL))
     {
         switch (Copy_u8_PortId)
         {
-            case DIO_U8_PORTA:Local_u8_PinValue = GET_BIT(DIO_U8_PINA_REG,Copy_u8_PinId);
-            if(Local_u8_PinValue == DIO_U8_LOW) {*Copy_pu8_ReturnPinValue = DIO_U8_LOW;}
-            else {*Copy_pu8_ReturnPinValue = DIO_U8_HIGH;}
-            break;
-            case DIO_U8_PORTB:Local_u8_PinValue = GET_BIT(DIO_U8_PINB_REG,Copy_u8_PinId);
-            if(Local_u8_PinValue == DIO_U8_LOW) {*Copy_pu8_ReturnPinValue = DIO_U8_LOW;}
-            else {*Copy_pu8_ReturnPinValue = DIO_U8_HIGH;}
-            break;
-            case DIO_U8_PORTC:Local_u8_PinValue = GET_BIT(DIO_U8_PINC_REG,Copy_u8_PinId);
-            if(Local_u8_PinValue == DIO_U8_LOW) {*Copy_pu8_ReturnPinValue = DIO_U8_LOW;}
-            else {*Copy_pu8_ReturnPinValue = DIO_U8_HIGH;}
-            break;
-            case DIO_U8_PORTD:Local_u8_PinValue = GET_BIT(DIO_U8_PIND_REG,Copy_u8_PinId);
-            if(Local_u8_PinValue == DIO_U8_LOW) {*Copy_pu8_ReturnPinValue = DIO_U8_LOW;}
-            else {*Copy_pu8_ReturnPinValue = DIO_U8_HIGH;}
-            break;
+            case DIO_U8_PORTA:*Copy_pu8_ReturnPinValue = GET_BIT(DIO_U8_PINA_REG,Copy_u8_PinId);break;
+            case DIO_U8_PORTB:*Copy_pu8_ReturnPinValue = GET_BIT(DIO_U8_PINB_REG,Copy_u8_PinId);break;
+            case DIO_U8_PORTC:*Copy_pu8_ReturnPinValue = GET_BIT(DIO_U8_PINC_REG,Copy_u8_PinId);break;
+            case DIO_U8_PORTD:*Copy_pu8_ReturnPinValue = GET_BIT(DIO_U8_PIND_REG,Copy_u8_PinId);break;
         }
     }
     else
