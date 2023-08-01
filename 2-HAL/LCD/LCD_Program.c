@@ -120,7 +120,7 @@ ES_t LCD_enu_SendChar(u8 Copy_u8_Char){
     #endif
 }
 ES_t LCD_enu_SendString(u8 * Copy_pu8_String){
-    for(u8 i ; Copy_pu8_String[i] != '\0' ; i++ ){
+    for(u8 i = 0 ; Copy_pu8_String[i] != '\0' ; i++ ){
         LCD_enu_SendChar(Copy_pu8_String[i]);
     }
     return STATE_OK;

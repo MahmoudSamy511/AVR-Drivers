@@ -15,6 +15,7 @@
 #define FUN_SET_8BIT_2LINES_5X7         0x38
 #define FUN_SET_4BIT_2LINES_5X7         0x28
 #define DIS_ON_CURSOR_ON_BLINKING       0x0f
+#define DIS_ON_CURSOR_OFF               0x0c
 #define DISPLAY_CLEAR                   0x01
 #define ENTRY_MOOD                      0x06
 /*************************** LCD Addresses ***********************/
