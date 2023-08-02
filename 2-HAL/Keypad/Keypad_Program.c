@@ -14,8 +14,8 @@
 /*MCAL*/
 #include "../../1-MCAL/DIO/DIO_interface.h"
 /*HAL*/
-#include "Keybad_Private.h"
-#include "Keybad_Config.h"
+#include "Keypad_Private.h"
+#include "Keypad_Config.h"
 
 const u8 Keypad_Au8_Keys[4][4] = KEYPAD_KEYS;
 const u8 Keypad_Au8_RowsPins[4] = {KEYPAD_U8_ROW1_PIN, KEYPAD_U8_ROW2_PIN, KEYPAD_U8_ROW3_PIN, KEYPAD_U8_ROW4_PIN};
