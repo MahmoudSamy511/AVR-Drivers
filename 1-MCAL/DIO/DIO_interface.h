@@ -49,5 +49,7 @@ ES_t DIO_enu_SetPortValue       (u8 Copy_u8_PortId, u8 Copy_u8_PortValue);
 
 ES_t DIO_enu_GetPortValue       (u8 Copy_u8_PortId, u8 * Copy_u8_ReturnPortValue);
 
+ES_t DIO_enu_ToggPin            (u8 Copy_u8_PortId, u8 Copy_u8_PinId);
+
 
 #endif

@@ -214,3 +214,20 @@ ES_t DIO_enu_GetPortValue(u8 Copy_u8_PortId, u8 * Copy_u8_ReturnPortValue){
     }
     return Local_u8_ErrorState;
 }
+ES_t DIO_enu_ToggPin(u8 Copy_u8_PortId, u8 Copy_u8_PinId){
+    u8 Local_u8_errorState = STATE_OK;
+    if((Copy_u8_PortId <=DIO_U8_PORTD)&&(Copy_u8_PinId <= DIO_U8_PIN7)){
+        switch (Copy_u8_PortId)
+	        {
+	        case DIO_U8_PORTA:TOG_BIT(DIO_U8_PORTA_REG,Copy_u8_PinId); break;
+	        case DIO_U8_PORTB:TOG_BIT(DIO_U8_PORTB_REG,Copy_u8_PinId); break;
+	        case DIO_U8_PORTC:TOG_BIT(DIO_U8_PORTC_REG,Copy_u8_PinId); break;
+	        case DIO_U8_PORTD:TOG_BIT(DIO_U8_PORTD_REG,Copy_u8_PinId); break;
+	        }
+    }else{
+        Local_u8_errorState = STATE_NOT_OK;
+    }
+    return Local_u8_errorState;
+
+
+}
