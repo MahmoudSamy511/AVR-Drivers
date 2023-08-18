@@ -45,6 +45,8 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
    **`5. GI Driver:`** For Controlling Global Interrupt.
    
    **`6. Timer Driver:`** For utilizing the Timer/Counter modules for various timing and PWM applications.
+   
+   **`7. WDT Driver:`** For dealing with Watch Dog timer.
   ## HAL Layer
    **`1. LCD:`** For interfacing with Liquad Crystal Display 2X16 (lm016l).
       
@@ -54,7 +56,9 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
       
    **`4. DC Motor:`** For interfacing with  DC Motors Connected to L298N H-bridge.
       
-   **`5. Stepper Motor:`** For interfacing with Stepper Motors
+   **`5. Stepper Motor:`** For interfacing with Stepper Motors.
+
+   **`6. Servo Motor:`** For interfacing with Servo Motor.
   ## LIB Layer
    **`1-TYPEDEF.h`** a file has redefined types like (Unsigned char --> u8 ,..).
    
