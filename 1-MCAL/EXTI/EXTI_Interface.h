@@ -21,9 +21,11 @@
 #define RISING_EDGE                 3
 
 
-ES_t EXTI_enu_EXTI_Enable(u8 Copy_u8_EXTI_Index,u8 Copy_u8_EXTI_Edge);
+ES_t EXTI_enu_Enable(u8 Copy_u8_EXTI_Index,u8 Copy_u8_EXTI_Edge);
 
-ES_t EXTI_enu_EXTI_Disable(u8 Copy_u8_EXTI_Index);
+ES_t EXTI_enu_setSenseControl(u8 Copy_u8_EXTI_Index,u8 Copy_u8_EXTI_Edge);
+
+ES_t EXTI_enu_Disable(u8 Copy_u8_EXTI_Index);
 
 ES_t EXTI_enu_setCallBack(void(*Copy_pf_ISR)(void), u8 Copy_u8_ISR_Index);
 

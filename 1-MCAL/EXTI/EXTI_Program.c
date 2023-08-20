@@ -15,7 +15,7 @@
 /*Global Array of Pointers To Function*/
 static void (*Apf_EXTI[NUM_OF_ISR_FUNCTIONS])(void) = {NULL};
 
-ES_t EXTI_enu_EXTI_Enable(u8 Copy_u8_EXTI_Index, u8 Copy_u8_EXTI_Edge)
+ES_t EXTI_enu_Enable(u8 Copy_u8_EXTI_Index, u8 Copy_u8_EXTI_Edge)
 {
     u8 Local_u8_errorState = STATE_OK;
     if (Copy_u8_EXTI_Index <= EXTI2 && Copy_u8_EXTI_Edge <= MAX_CHANGE_CASES)
@@ -89,8 +89,7 @@ ES_t EXTI_enu_EXTI_Enable(u8 Copy_u8_EXTI_Index, u8 Copy_u8_EXTI_Edge)
     }
     return Local_u8_errorState;
 }
-
-ES_t EXTI_enu_EXTI_Disable(u8 Copy_u8_EXTI_Index)
+ES_t EXTI_enu_Disable(u8 Copy_u8_EXTI_Index)
 {
     u8 Local_u8_errorState = STATE_OK;
     if (Copy_u8_EXTI_Index <= EXTI2)
@@ -114,7 +113,76 @@ ES_t EXTI_enu_EXTI_Disable(u8 Copy_u8_EXTI_Index)
     }
     return Local_u8_errorState;
 }
-
+ES_t EXTI_enu_setSenseControl(u8 Copy_u8_EXTI_Index,u8 Copy_u8_EXTI_Edge){
+    u8 Local_u8_errorState = STATE_OK;
+    if (Copy_u8_EXTI_Index <= EXTI2 && Copy_u8_EXTI_Edge <= MAX_CHANGE_CASES)
+    {
+        switch (Copy_u8_EXTI_Index)
+        {
+        case EXTI0:
+            switch (Copy_u8_EXTI_Edge)
+            {
+            case LOW_LEVEL:
+                CLR_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC00);
+                CLR_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC01);
+                break;
+            case ANY_LOGICAL_CHANGE:
+                SET_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC00);
+                CLR_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC01);
+                break;
+            case FALLING_EDGE:
+                CLR_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC00);
+                SET_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC01);
+                break;
+            case RISING_EDGE:
+                SET_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC00);
+                SET_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC01);
+                break;
+            }
+            break;
+        case EXTI1:
+            switch (Copy_u8_EXTI_Edge)
+            {
+            case LOW_LEVEL:
+                CLR_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC10);
+                CLR_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC11);
+                break;
+            case ANY_LOGICAL_CHANGE:
+                SET_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC10);
+                CLR_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC11);
+                break;
+            case FALLING_EDGE:
+                CLR_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC10);
+                SET_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC11);
+                break;
+            case RISING_EDGE:
+                SET_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC10);
+                SET_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC11);
+                break;
+            }
+            break;
+        case EXTI2:
+            switch (Copy_u8_EXTI_Edge)
+            {
+            case FALLING_EDGE:
+                CLR_BIT(EXTI_U8_MCUCSR, EXTI_U8_ISC2);
+                break;
+            case RISING_EDGE:
+                SET_BIT(EXTI_U8_MCUCSR, EXTI_U8_ISC2);
+                break;
+            default:
+                Local_u8_errorState = STATE_NOT_OK;
+                break;
+            }
+            break;
+        }
+    }
+    else
+    {
+        Local_u8_errorState = STATE_NOT_OK;
+    }
+    return Local_u8_errorState;
+}
 ES_t EXTI_enu_setCallBack(void (*Copy_pf_ISR)(void), u8 Copy_u8_ISR_Index)
 {
     u8 Local_u8_errorState = STATE_OK;
