@@ -6,7 +6,6 @@
 /****************************************************************************/
 #ifndef LCD_CONFIG_H
 #define LCD_CONFIG_H
-
 /*Options for Ports: 1- DIO_U8_PORTA
                      2- DIO_U8_PORTB
                      3- DIO_U8_PORTC
@@ -25,7 +24,13 @@
 /*Options for Mode: 1- LCD_U8_MODE_8BIT
                     2- LCD_U8_MODE_4BIT */
 
+/*Options for Cursor:1-CURSOR_ON_BLINKING
+                     2-CURSOR_OFF 
+*/
+
+/*****************Choose Your LCD Configuration**********************/
 #define LCD_U8_MODE             LCD_U8_MODE_4BIT
+#define LCD_U8_CURSOR           CURSOR_ON_BLINKING
 /**********************Control Port & Pins****************************/
 #define LCD_U8_RS_PORT          DIO_U8_PORTA
 #define LCD_U8_RW_PORT          DIO_U8_PORTA
@@ -43,9 +48,6 @@
 #define D2						DIO_U8_PIN7
 #define D1						DIO_U8_PIN7
 #define D0						DIO_U8_PIN7
-
-
-
 
 
 

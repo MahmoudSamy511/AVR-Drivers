@@ -28,11 +28,11 @@ ES_t LCD_enu_SendString(u8 * Copy_pu8_String);
 
 ES_t LCD_enu_SendNum(u32 Copy_u32_Num);
 
-ES_t LCD_enu_SetCursor(u8 Copy_u8_LineNum,u8 Copy_u8_Location);
+ES_t LCD_enu_SetCursor(u8 Copy_u8_lineNum,u8 Copy_u8_Location);
 
 ES_t LCD_enu_Clear(void);
 
-ES_t LCD_enu_CreateCustomChar(u8 Copy_u8_Location,u8 * Copy_pu8_CharArray);
+ES_t LCD_enu_sendCustomChar(u8 Copy_u8_charNum,u8 * Copy_pu8_charArray,u8 Copy_u8_lineNum,u8 Copy_u8_Location);
 
 
 

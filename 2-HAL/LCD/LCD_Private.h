@@ -14,8 +14,8 @@
 #define FOURBIT_INIT2                   0x32
 #define FUN_SET_8BIT_2LINES_5X7         0x38
 #define FUN_SET_4BIT_2LINES_5X7         0x28
-#define DIS_ON_CURSOR_ON_BLINKING       0x0f
-#define DIS_ON_CURSOR_OFF               0x0c
+#define CURSOR_ON_BLINKING              0x0f
+#define CURSOR_OFF                      0x0c
 #define DISPLAY_CLEAR                   0x01
 #define ENTRY_MOOD                      0x06
 /*************************** LCD Addresses ***********************/
@@ -35,5 +35,7 @@
 #define LINE2                           1
 #define MAX_CHARACTERS                  8
 #define MASK_BIT       				    1
+#define MAX_NUM_OF_LOCATIONS            40
+#define NUM_OF_LINES                    2
 
 #endif
