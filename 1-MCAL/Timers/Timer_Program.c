@@ -179,7 +179,7 @@ ES_t Timers_enu_delay_ms(u32 Copy_u32_Time)
     }
     TIMER0_TCCR0_REG &= CLEAR_CLK_SOURCE;
 }
-ES_t Timers_enu_SetPreloadValue(u8 Copy_u8_TimerNo,u16 Copy_u8_Value){
+ES_t Timers_enu_SetTimerValue(u8 Copy_u8_TimerNo,u16 Copy_u8_Value){
     u8 Local_u8_errorState = STATE_OK;
     if(Copy_u8_TimerNo < 3){
         switch (Copy_u8_TimerNo)
@@ -195,6 +195,24 @@ ES_t Timers_enu_SetPreloadValue(u8 Copy_u8_TimerNo,u16 Copy_u8_Value){
         Local_u8_errorState = STATE_NOT_OK;
     }
     return Local_u8_errorState;
+}
+ES_t Timers_enu_GetTimerValue(u8 Copy_u8_TimerNo,u16 *Copy_u8_Value){
+    u8 Local_u8_errorState = STATE_OK;
+    if(Copy_u8_TimerNo < 3){
+        switch (Copy_u8_TimerNo)
+        {
+        case TIMER0:
+            *Copy_u8_Value = TIMER0_TCNT0_REG;
+        break;
+        case TIMER1:
+            *Copy_u8_Value = TIMER1_TCNT1_REG;
+        break;
+        }
+    }else{
+        Local_u8_errorState = STATE_NOT_OK;
+    }
+    return Local_u8_errorState;
+
 }
 ES_t Timers_enu_Timer0SetCompareValue(u8 Copy_u8_Value){
     TIMER0_OCR0_REG = Copy_u8_Value;
