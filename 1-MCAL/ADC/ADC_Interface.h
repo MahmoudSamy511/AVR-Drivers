@@ -22,7 +22,7 @@
 
 ES_t ADC_enu_Init(void);
 ES_t ADC_enu_GetDigitalValueSynchNonBlocking(u8 Copy_u8_channelNb, u16 * Copy_pu16_DigitalValue);
-ES_t ADC_enu_GetDigitalValueASynch(u8 Copy_u8_channelNb, u8(* Copy_pf_Notification)(void));
+ES_t ADC_enu_GetDigitalValueASynch(u8 Copy_u8_channelNb, void(* Copy_pf_Notification)(u16));
 
 
 
