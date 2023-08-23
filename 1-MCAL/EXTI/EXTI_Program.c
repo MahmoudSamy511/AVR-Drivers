@@ -8,6 +8,7 @@
 #include "../../5-LIB/TYPEDEF.h"
 #include "../../5-LIB/ERROR_STATE.h"
 #include "../../5-LIB/BIT_MATH.h"
+#include "../../5-LIB/ISR_Functions.h"
 
 #include "EXTI_Private.h"
 #include "EXTI_Config.h"
@@ -23,7 +24,6 @@ ES_t EXTI_enu_Enable(u8 Copy_u8_EXTI_Index, u8 Copy_u8_EXTI_Edge)
         switch (Copy_u8_EXTI_Index)
         {
         case EXTI0:
-            SET_BIT(EXTI_U8_GICR, EXTI_U8_IN0);
             switch (Copy_u8_EXTI_Edge)
             {
             case LOW_LEVEL:
@@ -43,9 +43,9 @@ ES_t EXTI_enu_Enable(u8 Copy_u8_EXTI_Index, u8 Copy_u8_EXTI_Edge)
                 SET_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC01);
                 break;
             }
+            SET_BIT(EXTI_U8_GICR, EXTI_U8_IN0);
             break;
         case EXTI1:
-            SET_BIT(EXTI_U8_GICR, EXTI_U8_IN1);
             switch (Copy_u8_EXTI_Edge)
             {
             case LOW_LEVEL:
@@ -65,9 +65,9 @@ ES_t EXTI_enu_Enable(u8 Copy_u8_EXTI_Index, u8 Copy_u8_EXTI_Edge)
                 SET_BIT(EXTI_U8_MCUCR, EXTI_U8_ISC11);
                 break;
             }
+            SET_BIT(EXTI_U8_GICR, EXTI_U8_IN1);
             break;
         case EXTI2:
-            SET_BIT(EXTI_U8_GICR, EXTI_U8_IN2);
             switch (Copy_u8_EXTI_Edge)
             {
             case FALLING_EDGE:
@@ -80,6 +80,7 @@ ES_t EXTI_enu_Enable(u8 Copy_u8_EXTI_Index, u8 Copy_u8_EXTI_Edge)
                 Local_u8_errorState = STATE_NOT_OK;
                 break;
             }
+            SET_BIT(EXTI_U8_GICR, EXTI_U8_IN1);
             break;
         }
     }
@@ -196,20 +197,18 @@ ES_t EXTI_enu_setCallBack(void (*Copy_pf_ISR)(void), u8 Copy_u8_ISR_Index)
     }
     return Local_u8_errorState;
 }
-/*ISR OF EXTI0*/
-void __vector_1(void)
+ISR(EXTI_INT0)
 {
     if (Apf_EXTI[EXTI0] != NULL)
         Apf_EXTI[EXTI0]();
 }
-/*ISR OF EXTI1*/
-void __vector_2(void)
+ISR(EXTI_INT1)
 {
     if (Apf_EXTI[EXTI1] != NULL)
         Apf_EXTI[EXTI1]();
 }
-/*ISR OF EXTI2*/
-void __vector_3(void)
+
+ISR(EXTI_INT2)
 {
     if (Apf_EXTI[EXTI2] != NULL)
         Apf_EXTI[EXTI2]();
