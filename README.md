@@ -86,4 +86,4 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
 - Compile your code using the AVR-GCC compiler and program the ATmega32 microcontroller with the generated HEX file using AVRDUDE or any other AVR programmer software
   
  ## 5. Additional Resources
-  - [ATmega32 Datasheet](https://www.microchip.com/en-us/product/ATmega32) - Refer to the official datasheet for detailed information about the ATmega32 microcontroller.
+  - [ATmega32 Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/doc2503.pdf) - Refer to the official datasheet for detailed information about the ATmega32 microcontroller.
