@@ -13,9 +13,9 @@
 */
 
 /*Options For ADC Coversion Mode :
-                                1-START_CONVERSION 
-                                2-FREE_RUNNING_MODE
-                                3-EXTERNAL_INTERRUPT
+                                1-DISABLE_AUTO_TRIGG
+                                2-AUTO_TRIGG_FREE_RUNNING
+                                3-AUTO_TRIGG_EXTERNAL_INTERRUPT
 */
 
 /*Options For ADC Presentation Mode :
@@ -36,13 +36,12 @@
 /******************Choose Referance Voltage**********************/
 #define ADC_REF_VOLTAGE                     AVCC               
 /******************Choose Conversion Mode**********************/
-#define ADC_CONVERSION_MODE                 START_CONVERSION               
+#define ADC_CONVERSION_MODE                 DISABLE_AUTO_TRIGG               
 /******************Choose Presentation Mode**********************/
 #define ADC_PRESENTATION_MODE               RIGHT_ADJUST               
 /******************Choose Division Factor**********************/
 #define ADC_DIVISION_FACTOR                 DIV_BY_128               
-/******************Choose MAX Timout Value**********************/
-#define ADC_U32_TIMEOUT_MAX_VALUE           50000
+
 
 
 

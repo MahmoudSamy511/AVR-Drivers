@@ -7,6 +7,7 @@
 #include"../../5-LIB/TYPEDEF.h"
 #include"../../5-LIB/ERROR_STATE.h"
 #include"../../5-LIB/BIT_MATH.h"
+#include"../../5-LIB/ISR_Functions.h"
 
 #include"ADC_Private.h"
 #include"ADC_Config.h"
@@ -14,7 +15,6 @@
 static void(* ADC_pf_Notification)(u16) = NULL;
 /****************************ADC busy Flag*****************************************/
 static u8 ADC_u8_busyFlag = 0;
-
 ES_t ADC_enu_Init(void){
 /**********************Voltage Referance******************/
     #if ADC_REF_VOLTAGE == AVCC
@@ -34,14 +34,14 @@ ES_t ADC_enu_Init(void){
     SET_BIT(ADMUX_REG,ADLAR);
     #endif
 /****************Conversion Mode**************************/
-    #if ADC_CONVERSION_MODE == START_CONVERSION
+    #if ADC_CONVERSION_MODE == DISABLE_AUTO_TRIGG
     CLR_BIT(ADCSRA_REG,ADATE);
-    #elif ADC_CONVERSION_MODE == FREE_RUNNING_MODE
+    #elif ADC_CONVERSION_MODE == AUTO_TRIGG_FREE_RUNNING
     SET_BIT(ADCSRA_REG,ADATE);
     CLR_BIT(SFIOR_REG,ADTS2);
     CLR_BIT(SFIOR_REG,ADTS1);
     CLR_BIT(SFIOR_REG,ADTS0);
-    #elif ADC_CONVERSION_MODE == EXTERNAL_INTERRUPT
+    #elif ADC_CONVERSION_MODE == AUTO_TRIGG_EXTERNAL_INTERRUPT
     SET_BIT(ADCSRA_REG,ADATE);
     CLR_BIT(SFIOR_REG,ADTS2);
     SET_BIT(SFIOR_REG,ADTS1);
@@ -51,10 +51,8 @@ ES_t ADC_enu_Init(void){
     ADCSRA_REG |= ADC_DIVISION_FACTOR;
 /******************* Enable ADC **********************/
     SET_BIT(ADCSRA_REG,ADEN);
-    
     return STATE_OK;
 }
-
 ES_t ADC_enu_GetDigitalValueSynchNonBlocking(u8 Copy_u8_channelNb, u16 * Copy_pu16_DigitalValue){
     u8 Local_u8_errorState = STATE_OK;
     u32 Local_u32_timeOutCounter = 0;
@@ -84,7 +82,6 @@ ES_t ADC_enu_GetDigitalValueSynchNonBlocking(u8 Copy_u8_channelNb, u16 * Copy_pu
         Local_u8_errorState = STATE_NOT_OK;
     }
     return Local_u8_errorState;
-
 }
 ES_t ADC_enu_GetDigitalValueASynch(u8 Copy_u8_channelNb, void(* Copy_pf_Notification)(u16)){
     u8 Local_u8_errorState = STATE_OK;
@@ -104,19 +101,15 @@ ES_t ADC_enu_GetDigitalValueASynch(u8 Copy_u8_channelNb, void(* Copy_pf_Notifica
     }else{
         Local_u8_errorState= STATE_NOT_OK;
     }
-
     return Local_u8_errorState;
 }
-
 /***************ISR Function OF ADC*************/
-void __vector_16(void){
+ISR(ADC){
     if(ADC_pf_Notification !=NULL){
-        //Clear ADC Flag & busy Flag
+        //Disable Interrupt & busy Flag
         CLR_BIT(ADCSRA_REG,ADIE);
         ADC_u8_busyFlag = 0;
         //Calling Notification Func
         ADC_pf_Notification(ADC_REG);
     }
-   
-
 }

@@ -40,8 +40,6 @@
 #define ADC_U8_CHANNEL5                 5
 #define ADC_U8_CHANNEL6                 6
 #define ADC_U8_CHANNEL7                 7
-/**********************Prototype FOR ISR of ADC******************************/
-void __vector_16(void)  __attribute__((signal));
 /**************************************************************************/
 #define CLEAR_MUX_BITS                  0xE0
 #define MAX_NUM_OF_CHANNELS             32
@@ -50,9 +48,9 @@ void __vector_16(void)  __attribute__((signal));
 #define AREF                             0
 #define INTERNAL_VOLTAGE_REF             3
 
-#define START_CONVERSION                 1
-#define FREE_RUNNING_MODE                2
-#define EXTERNAL_INTERRUPT               3
+#define DISABLE_AUTO_TRIGG               1
+#define AUTO_TRIGG_FREE_RUNNING          2
+#define AUTO_TRIGG_EXTERNAL_INTERRUPT    3
 
 #define RIGHT_ADJUST                     0
 #define LEFT_ADJUST                      1
@@ -64,6 +62,8 @@ void __vector_16(void)  __attribute__((signal));
 #define DIV_BY_32                        5
 #define DIV_BY_64                        6
 #define DIV_BY_128                       7
+
+#define ADC_U32_TIMEOUT_MAX_VALUE   50000
 
 
 #endif
