@@ -33,14 +33,8 @@
 #define ANY_LOGICAL_CHANGE          1
 #define FALLING_EDGE                2
 #define RISING_EDGE                 3
-/************************* Prototypes For ISR Functions*********************/
-void __vector_1(void)     __attribute__((signal));
-void __vector_2(void)     __attribute__((signal));
-void __vector_3(void)     __attribute__((signal));
-
 /*************************************************************************/
 #define MAX_CHANGE_CASES            3
 #define NUM_OF_ISR_FUNCTIONS        3
-
 
 #endif
