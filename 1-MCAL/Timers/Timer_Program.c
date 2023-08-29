@@ -7,6 +7,7 @@
 #include"../../5-LIB/TYPEDEF.h"
 #include"../../5-LIB/ERROR_STATE.h"
 #include"../../5-LIB/BIT_MATH.h"
+#include"../../5-LIB/ISR_Functions.h"
 
 #include"Timer_Private.h"
 #include"Timer_Config.h"
@@ -25,14 +26,10 @@ if((Copy_u8_TimerNo<2)&& (Copy_u8_Mode < 7)&&(Copy_u8_Prescaler<8)){
         case NORMAL_MODE:
             CLR_BIT(TIMER0_TCCR0_REG, WGM00);
             CLR_BIT(TIMER0_TCCR0_REG, WGM01);
-            // Enable OverFlow Interrupt
-            SET_BIT(TIMER_TIMSK_REG, TOIE0);
         break;
         case CTC_MODE:
             CLR_BIT(TIMER0_TCCR0_REG, WGM00);
             SET_BIT(TIMER0_TCCR0_REG, WGM01);
-            // Enable CTC Interrupt
-            SET_BIT(TIMER_TIMSK_REG, OCIE0);
         break;
         case FAST_PWM_INVERTING:
             // Fast
@@ -78,21 +75,18 @@ if((Copy_u8_TimerNo<2)&& (Copy_u8_Mode < 7)&&(Copy_u8_Prescaler<8)){
             CLR_BIT(TIMER1_TCCR1A_REG, WGM11);
             CLR_BIT(TIMER1_TCCR1B_REG, WGM12);
             CLR_BIT(TIMER1_TCCR1B_REG, WGM13);
-            SET_BIT(TIMER_TIMSK_REG, TOIE1);
         break;
         case CTC_MODE_A:
             CLR_BIT(TIMER1_TCCR1A_REG, WGM10);
             CLR_BIT(TIMER1_TCCR1A_REG, WGM11);
             SET_BIT(TIMER1_TCCR1B_REG, WGM12);
             CLR_BIT(TIMER1_TCCR1B_REG, WGM13);
-            SET_BIT(TIMER_TIMSK_REG, OCIE1A);
         break;
         case CTC_MODE_B:
             CLR_BIT(TIMER1_TCCR1A_REG, WGM10);
             CLR_BIT(TIMER1_TCCR1A_REG, WGM11);
             CLR_BIT(TIMER1_TCCR1B_REG, WGM12);
             CLR_BIT(TIMER1_TCCR1B_REG, WGM13);
-            SET_BIT(TIMER_TIMSK_REG, OCIE1B);
         break;
         case FAST_PWM_NON_INVERTING:
             CLR_BIT(TIMER1_TCCR1A_REG, WGM10);
@@ -122,14 +116,27 @@ return Local_u8_errorState;
 }
 ES_t Timers_enu_SetCallBack(u8 Copy_u8_TimerNo,void(*Copy_pf)(void),u8 Copy_u8_Mode){
     u8 Local_u8_errorState = STATE_OK;
-    if((Copy_u8_TimerNo<2)&(Copy_pf != NULL) && (Copy_u8_Mode<7)){
+    if((Copy_u8_TimerNo<2)&(Copy_pf != NULL) && (Copy_u8_Mode<=2)){
         switch (Copy_u8_TimerNo)
         {
         case TIMER0:
-            Timers_pf_Timer0[Copy_u8_Mode] = Copy_pf;
+        switch (Copy_u8_Mode)
+        {
+        // Enable Interrupts
+        case NORMAL_MODE:SET_BIT(TIMER_TIMSK_REG, TOIE0);break;
+        case CTC_MODE:SET_BIT(TIMER_TIMSK_REG, OCIE0);break;
+        }
+        Timers_pf_Timer0[Copy_u8_Mode] = Copy_pf;
         break;
         case TIMER1:
-            Timers_pf_Timer1[Copy_u8_Mode] = Copy_pf;
+        switch (Copy_u8_Mode)
+        {
+        // Enable Interrupts
+        case NORMAL_MODE:SET_BIT(TIMER_TIMSK_REG, TOIE1);break;
+        case CTC_MODE_A:SET_BIT(TIMER_TIMSK_REG, OCIE1A);break;
+        case CTC_MODE_B:SET_BIT(TIMER_TIMSK_REG, OCIE1B);break;
+        }
+        Timers_pf_Timer1[Copy_u8_Mode] = Copy_pf;
         break;
         }
         
@@ -164,9 +171,9 @@ ES_t Timers_enu_SetCLKSource(u8 Copy_u8_TimerNo,u8 Copy_u8_CLK_Source){
 ES_t Timers_enu_delay_ms(u32 Copy_u32_Time)
 {
     TIMER0_TCCR0_REG |= Timer0_u8_Prescaler;
-    u16 local_u16_OVF_Time = 256 * 8 / F_CPU;
-    u16 local_u16_NumOfOVF = (Copy_u32_Time * 1000) / local_u16_OVF_Time;
-    u16 local_u16_proLoad = (((Copy_u32_Time * 1000) % local_u16_OVF_Time) * F_CPU) / 8;
+    u16 local_u16_OVF_Time = (256 * PRESCALER) / F_CPU;
+    u16 local_u16_NumOfOVF = (Copy_u32_Time * 1000UL) / local_u16_OVF_Time;
+    u16 local_u16_proLoad = (((Copy_u32_Time * 1000UL) % local_u16_OVF_Time) * F_CPU) / PRESCALER;
     TIMER0_TCNT0_REG = 256 - local_u16_proLoad;
     u16 local_u16_counter = 0;
     while (local_u16_counter != (local_u16_NumOfOVF + 1))
@@ -259,27 +266,27 @@ ES_t Timers_enu_Stop(u8 Copy_u8_TimerNo){
 }
 
 /*****ISR(Timer1) CTC Mode A*****/
-void __vector_7(void){
+ISR(TIMER1_COMPA){
     if (Timers_pf_Timer1[CTC_MODE_A] != NULL)
         Timers_pf_Timer1[CTC_MODE_A]();
 }
 /*****ISR(Timer1) CTC Mode B*****/
-void __vector_8(void){
+ISR(TIMER1_COMPB){
     if (Timers_pf_Timer1[CTC_MODE_B] != NULL)
         Timers_pf_Timer1[CTC_MODE_B]();
 }
 /*****ISR(Timer1) Normal Mode*****/
-void __vector_9(void){
+ISR(TIMER1_OVF){
     if (Timers_pf_Timer1[NORMAL_MODE] != NULL)
         Timers_pf_Timer1[NORMAL_MODE]();
 }
 /*****ISR(Timer0) CTC Mode*****/
-void __vector_10(void){
+ISR(TIMER0_COMP){
     if (Timers_pf_Timer0[CTC_MODE] != NULL)
         Timers_pf_Timer0[CTC_MODE]();
 }
 /*****ISR(Timer0) Normal Mode*****/
-void __vector_11(void){
+ISR(TIMER0_OVF){
     if (Timers_pf_Timer0[NORMAL_MODE] != NULL)
         Timers_pf_Timer0[NORMAL_MODE]();
 }

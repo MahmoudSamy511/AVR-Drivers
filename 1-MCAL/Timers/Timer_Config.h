@@ -7,7 +7,9 @@
 #ifndef TIMER_CONFIG_H
 #define TIMER_CONFIG_H
 
-#define F_CPU      16       //MHZ
+/*********************** For (delay_ms) Function Only ********************************/
+#define F_CPU                 16000000UL       //HZ
+#define PRESCALER             8000000UL       //HZ
 
 
 #endif
