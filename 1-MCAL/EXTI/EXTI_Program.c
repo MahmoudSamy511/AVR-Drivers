@@ -80,7 +80,7 @@ ES_t EXTI_enu_Enable(u8 Copy_u8_EXTI_Index, u8 Copy_u8_EXTI_Edge)
                 Local_u8_errorState = STATE_NOT_OK;
                 break;
             }
-            SET_BIT(EXTI_U8_GICR, EXTI_U8_IN1);
+            SET_BIT(EXTI_U8_GICR, EXTI_U8_IN2);
             break;
         }
     }
