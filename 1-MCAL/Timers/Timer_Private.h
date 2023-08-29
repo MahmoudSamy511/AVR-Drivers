@@ -51,6 +51,8 @@
 #define COM1B1                          5
 #define COM1B0                          4
 #define TOV1                            2       
+#define ICES1                           6       
+#define TICIE1                          5       
 /***************************Protypes Of ISR(Timer0) Functions*********************/
 void __vector_10(void)    __attribute__((signal));
 void __vector_11(void)    __attribute__((signal));
@@ -59,30 +61,37 @@ void __vector_7(void)    __attribute__((signal));
 void __vector_8(void)    __attribute__((signal));
 void __vector_9(void)    __attribute__((signal));
 /*****************************Options Macros**********************/
-#define TIMER0                              0                     
-#define TIMER1                              1
+#define TIMER0                                      0                     
+#define TIMER1                                      1
+        
+#define COMPARE_UNIT_A                              0
+#define COMPARE_UNIT_B                              1
+        
+#define NORMAL_MODE                                 0
+#define CTC_MODE                                    1
+#define CTC_MODE_A                                  1
+#define CTC_MODE_B                                  2 
+#define FAST_PWM_INVERTING                          3
+#define FAST_PWM_NON_INVERTING                      4
+#define PHASE_CORRECT_PWM_INVERTING                 5    
+#define PHASE_CORRECT_PWM_NON_INVERTING             6
+#define FAST_PWM_NON_INVERTING_COMA                 7
+#define FAST_PWM_NON_INVERTING_COMB                 8 
+#define PHASE_CORRECT_PWM_NON_INVERTING_COMA        9
+#define PHASE_CORRECT_PWM_NON_INVERTING_COMB        10 
 
-#define COMPARE_UNIT_A                      0
-#define COMPARE_UNIT_B                      1
 
-#define NORMAL_MODE                         0
-#define CTC_MODE                            1
-#define CTC_MODE_A                          1
-#define CTC_MODE_B                          2 
-#define FAST_PWM_INVERTING                  3
-#define FAST_PWM_NON_INVERTING              4
-#define PHASE_CORRECT_PWM_INVERTING         5    
-#define PHASE_CORRECT_PWM_NON_INVERTING     6    
+#define F_CPU_CLK                                   1
+#define CLK_8                                       2
+#define CLK_64                                      3
+#define CLK_256                                     4
+#define CLK_1024                                    5
+#define EXTERNAL_FALLING_EDGE                       6           
+#define EXTERNAL_RISING_EDGE                        7            
+        
+#define ICU_FALLING_EDGE                             0           
+#define ICU_RISING_EDGE                              1    
 
-
-#define F_CPU_CLK                           1
-#define CLK_8                               2
-#define CLK_64                              3
-#define CLK_256                             4
-#define CLK_1024                            5
-#define EXTERNAL_FALLING_EDGE               6           
-#define EXTERNAL_RISING_EDGE                7            
-
-#define CLEAR_CLK_SOURCE                    0XF8
+#define CLEAR_CLK_SOURCE                            0XF8
 
 #endif

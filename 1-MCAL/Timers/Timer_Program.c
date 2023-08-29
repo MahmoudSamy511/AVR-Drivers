@@ -14,10 +14,11 @@
 static u8 Timer0_u8_Prescaler , Timer1_u8_Prescaler;
 /*Global Pointer To Function */
 static  void(*Timers_pf_Timer0[2])(void) = {NULL};
-static  void(*Timers_pf_Timer1[3])(void)= {NULL};
+static  void(*Timers_pf_Timer1[4])(void)= {NULL};
+
 ES_t Timers_enu_Init(u8 Copy_u8_TimerNo,u8 Copy_u8_Mode,u8 Copy_u8_Prescaler){
 u8 Local_u8_errorState = STATE_OK;
-if((Copy_u8_TimerNo<2)&& (Copy_u8_Mode < 7)&&(Copy_u8_Prescaler<8)){
+if((Copy_u8_TimerNo<3)&& (Copy_u8_Mode < 9)&&(Copy_u8_Prescaler<8)){
     switch (Copy_u8_TimerNo)
     {
     case TIMER0:
@@ -64,6 +65,7 @@ if((Copy_u8_TimerNo<2)&& (Copy_u8_Mode < 7)&&(Copy_u8_Prescaler<8)){
             CLR_BIT(TIMER0_TCCR0_REG, COM00);
         break;
         }
+    /*******Select Prescaler******/
     TIMER0_TCCR0_REG |= Copy_u8_Prescaler;
     Timer0_u8_Prescaler = Copy_u8_Prescaler;
     break;
@@ -82,13 +84,7 @@ if((Copy_u8_TimerNo<2)&& (Copy_u8_Mode < 7)&&(Copy_u8_Prescaler<8)){
             SET_BIT(TIMER1_TCCR1B_REG, WGM12);
             CLR_BIT(TIMER1_TCCR1B_REG, WGM13);
         break;
-        case CTC_MODE_B:
-            CLR_BIT(TIMER1_TCCR1A_REG, WGM10);
-            CLR_BIT(TIMER1_TCCR1A_REG, WGM11);
-            CLR_BIT(TIMER1_TCCR1B_REG, WGM12);
-            CLR_BIT(TIMER1_TCCR1B_REG, WGM13);
-        break;
-        case FAST_PWM_NON_INVERTING:
+        case FAST_PWM_NON_INVERTING_COMA:
             CLR_BIT(TIMER1_TCCR1A_REG, WGM10);
             SET_BIT(TIMER1_TCCR1A_REG, WGM11);
             SET_BIT(TIMER1_TCCR1B_REG, WGM12);
@@ -96,7 +92,15 @@ if((Copy_u8_TimerNo<2)&& (Copy_u8_Mode < 7)&&(Copy_u8_Prescaler<8)){
             SET_BIT(TIMER1_TCCR1A_REG, COM1A1);
             CLR_BIT(TIMER1_TCCR1A_REG, COM1A0);
         break;
-        case PHASE_CORRECT_PWM_NON_INVERTING:
+        case FAST_PWM_NON_INVERTING_COMB:
+            CLR_BIT(TIMER1_TCCR1A_REG, WGM10);
+            SET_BIT(TIMER1_TCCR1A_REG, WGM11);
+            SET_BIT(TIMER1_TCCR1B_REG, WGM12);
+            SET_BIT(TIMER1_TCCR1B_REG, WGM13);
+            SET_BIT(TIMER1_TCCR1A_REG, COM1B1);
+            CLR_BIT(TIMER1_TCCR1A_REG, COM1B0);
+        break;
+        case PHASE_CORRECT_PWM_NON_INVERTING_COMA:
             SET_BIT(TIMER1_TCCR1A_REG, WGM10);
             SET_BIT(TIMER1_TCCR1A_REG, WGM11);
             CLR_BIT(TIMER1_TCCR1B_REG, WGM12);
@@ -104,7 +108,16 @@ if((Copy_u8_TimerNo<2)&& (Copy_u8_Mode < 7)&&(Copy_u8_Prescaler<8)){
             SET_BIT(TIMER1_TCCR1A_REG, COM1A1);
             CLR_BIT(TIMER1_TCCR1A_REG, COM1A0);
         break;
+        case PHASE_CORRECT_PWM_NON_INVERTING_COMB:
+            SET_BIT(TIMER1_TCCR1A_REG, WGM10);
+            SET_BIT(TIMER1_TCCR1A_REG, WGM11);
+            CLR_BIT(TIMER1_TCCR1B_REG, WGM12);
+            SET_BIT(TIMER1_TCCR1B_REG, WGM13);
+            SET_BIT(TIMER1_TCCR1A_REG, COM1B1);
+            CLR_BIT(TIMER1_TCCR1A_REG, COM1B0);
+        break;
         }
+    /*******Select Prescaler******/
     TIMER1_TCCR1B_REG |= Copy_u8_Prescaler;
     Timer1_u8_Prescaler = Copy_u8_Prescaler;
     break;
@@ -116,7 +129,7 @@ return Local_u8_errorState;
 }
 ES_t Timers_enu_SetCallBack(u8 Copy_u8_TimerNo,void(*Copy_pf)(void),u8 Copy_u8_Mode){
     u8 Local_u8_errorState = STATE_OK;
-    if((Copy_u8_TimerNo<2)&(Copy_pf != NULL) && (Copy_u8_Mode<=2)){
+    if((Copy_u8_TimerNo< 3)&(Copy_pf != NULL) && (Copy_u8_Mode< 3)){
         switch (Copy_u8_TimerNo)
         {
         case TIMER0:
@@ -147,7 +160,7 @@ ES_t Timers_enu_SetCallBack(u8 Copy_u8_TimerNo,void(*Copy_pf)(void),u8 Copy_u8_M
 }
 ES_t Timers_enu_SetCLKSource(u8 Copy_u8_TimerNo,u8 Copy_u8_CLK_Source){
     u8 Local_u8_errorState = STATE_OK;
-    if((Copy_u8_CLK_Source < 8) && (Copy_u8_TimerNo < 2)){
+    if((Copy_u8_CLK_Source < 8) && (Copy_u8_TimerNo < 3)){
         switch (Copy_u8_TimerNo)
         {
         case TIMER0:
@@ -247,7 +260,7 @@ ES_t Timers_enu_Timer1SetCompareValue(u8 Copy_u8_compareREG ,u16 Copy_u8_Value){
 }
 ES_t Timers_enu_Stop(u8 Copy_u8_TimerNo){
     u8 Local_u8_errorState = STATE_OK;
-    if(Copy_u8_TimerNo<2){
+    if(Copy_u8_TimerNo<3){
         switch (Copy_u8_TimerNo)
         {
         case TIMER0:
@@ -265,6 +278,48 @@ ES_t Timers_enu_Stop(u8 Copy_u8_TimerNo){
     return Local_u8_errorState;
 }
 
+/*************** ICU ******************/
+ES_t Timers_enu_ICUReadValue(u16 * Copy_ICR1_Value){
+    u8 Local_u8_errorState = STATE_OK;
+    if(Copy_ICR1_Value != NULL){
+        *Copy_ICR1_Value = TIMER1_ICR1_REG;
+    }else{
+        Local_u8_errorState = STATE_NOT_OK;
+    }
+    return Local_u8_errorState;
+}
+ES_t Timers_enu_ICUSetTriggerEdge(u8 Copy_Trigger){
+    u8 Local_u8_errorState = STATE_OK;
+    switch (Copy_Trigger)
+    {
+    case ICU_RISING_EDGE:SET_BIT(TIMER1_TCCR1B_REG, ICES1);break;
+    case ICU_FALLING_EDGE:CLR_BIT(TIMER1_TCCR1B_REG, ICES1);break;
+    default:Local_u8_errorState = STATE_NOT_OK ;break;
+    }
+    return Local_u8_errorState;
+}
+ES_t Timers_enu_ICUSetCallBack(void (*Copy_pf_ICU)(void)){
+    u8 Local_u8_errorState = STATE_OK;
+    if(Copy_pf_ICU != NULL){
+        Timers_pf_Timer1[3]  = Copy_pf_ICU;
+    }else{
+        Local_u8_errorState =STATE_NOT_OK;
+    }
+    return Local_u8_errorState;
+}
+ES_t Timers_enu_ICUInterruptEnabled(){
+    SET_BIT(TIMER_TIMSK_REG,TICIE1);
+    return STATE_OK;
+}
+ES_t Timers_enu_ICUInterruptDisabled(){
+    CLR_BIT(TIMER_TIMSK_REG,TICIE1);
+    return STATE_OK;
+}
+/*****ISR(Timer1) ICU *****/
+ISR(TIMER1_CAPT){
+    if(Timers_pf_Timer1[3] != NULL)
+        Timers_pf_Timer1[3]();
+}
 /*****ISR(Timer1) CTC Mode A*****/
 ISR(TIMER1_COMPA){
     if (Timers_pf_Timer1[CTC_MODE_A] != NULL)
