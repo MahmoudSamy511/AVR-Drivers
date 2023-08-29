@@ -10,5 +10,9 @@
 #define SERVO_MAX_ANGLE              180
 #define SERVO_MIN_TIME               1000UL
 #define SERVO_COMPLETE_CYCLE_TICKS   40000
+#define CONNECTED                       1   
+#define NUM_OF_MOTORS                   2
+#define MOTOR_1                         1
+#define MOTOR_2                         2
 
 #endif
