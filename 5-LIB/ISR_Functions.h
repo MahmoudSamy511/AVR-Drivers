@@ -1,7 +1,7 @@
 #ifndef ISR_FUNCTIONS_H
 #define ISR_FUNCTIONS_H
 
-#define ISR(vect)         void vect (void) __attribute__((signal));\ 
+#define ISR(vect)         void vect (void) __attribute__((signal));\
                           void vect (void)
 
 #define  EXTI_INT0             __vector_1
