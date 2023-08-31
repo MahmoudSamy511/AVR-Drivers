@@ -28,4 +28,5 @@ ES_t WDT_enu_Disable(void){
     /*Disable Sequance*/
     WDT_WDTCR_REG |= ((1<<WDTOE) | (1<<WDE));
     WDT_WDTCR_REG = 0x00;
+    return STATE_OK;
 }
