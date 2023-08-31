@@ -36,17 +36,19 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
   ## MCAL Layer
    **`1. DIO Driver:`** For configuring and manipulating General Purpose Input/Output pins.
    
-   **`2. UART Driver:`** For UART serial communication with other devices.
+   **`2. ADC Driver:`** For Analog to Digital Conversion using the onboard ADC.
    
-   **`3. ADC Driver:`** For Analog to Digital Conversion using the onboard ADC.
+   **`3. EXTI Driver:`** For handling External Interrupts.
    
-   **`4. EXTI Driver:`** For handling External Interrupts.
+   **`4. GI Driver:`** For Controlling Global Interrupt.
    
-   **`5. GI Driver:`** For Controlling Global Interrupt.
+   **`5. Timer Driver:`** For utilizing the Timer/Counter modules for various timing and PWM applications.
    
-   **`6. Timer Driver:`** For utilizing the Timer/Counter modules for various timing and PWM applications.
-   
-   **`7. WDT Driver:`** For dealing with Watch Dog timer.
+   **`6. WDT Driver:`** For dealing with Watch Dog timer.
+
+   **`7. UART Driver:`** For UART serial communication with other devices.
+
+   **`8. SPI Driver:`** For Serial Peripheral Interface Communication with other devices.
   ## HAL Layer
    **`1. LCD:`** For interfacing with Liquad Crystal Display 2X16 (lm016l).
       
