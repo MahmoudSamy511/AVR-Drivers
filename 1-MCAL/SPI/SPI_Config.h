@@ -23,7 +23,7 @@
                         1-LEADING_SAMPLE
                         2-LEADING_SETUP
 */
-/*Option For Clock Phase:
+/*Option For Clock Prescaler:
                         1-DIV_2
                         2-DIV_4
                         3-DIV_8
