@@ -90,7 +90,7 @@ ES_t SPI_enu_Init(void){
     SET_BIT(SPI_SPCR,SPE);
     return STATE_OK;
 }
-ES_t SPI_enu_Transeive(u8 Copy_u8_Data ,u8 *Copy_u8_recievedData){
+ES_t SPI_enu_Transceive(u8 Copy_u8_Data ,u8 *Copy_u8_recievedData){
         //Send Data
         SPI_SPDR = Copy_u8_Data;
         while ((!GET_BIT(SPI_SPSR,SPIF)));

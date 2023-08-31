@@ -11,7 +11,7 @@
 #include"../../5-LIB/ERROR_STATE.h"
 
 ES_t SPI_enu_Init(void);
-ES_t SPI_enu_Transeive(u8 Copy_u8_Data ,u8 *Copy_u8_recievedData);
+ES_t SPI_enu_Transceive(u8 Copy_u8_Data ,u8 *Copy_u8_recievedData);
 
 
 #endif
