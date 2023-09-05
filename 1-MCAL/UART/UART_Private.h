@@ -10,7 +10,7 @@
 /*********************Registers Addresses******************/
 #define UART_UBRRH_REG    *((volatile u8*)0x40)
 #define UART_UBRRL_REG    *((volatile u8*)0x29)
-#define UART_UCSRC_REG    *((volatile u8*)0x40)
+#define UART_UCSRC_REG    *((volatile u8*)0x40)   //Byte Access
 #define UART_UDR_REG      *((volatile u8*)0x2c)
 #define UART_UCSRA_REG    *((volatile u8*)0x2b)
 #define UART_UCSRB_REG    *((volatile u8*)0x2a)
