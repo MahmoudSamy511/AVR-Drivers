@@ -92,6 +92,10 @@ ES_t I2C_enu_readData(u8 Copy_u8_slaveAddress,u8 *Copy_pu8_receivedByte){
         I2C_enu_clearAndCheckFlag();
         //5-Read Data
         *Copy_pu8_receivedByte= I2C_TWDR;
+        //6- Send NACK
+        CLR_BIT(I2C_TWCR,TWEA);
+        //7- Check Flag
+        I2C_enu_clearAndCheckFlag();
         #elif I2C_MODE == I2C_SLAVE
         //Wait to recieve Slave Address
         while( (TWSR & 0xf8) != 0x60);

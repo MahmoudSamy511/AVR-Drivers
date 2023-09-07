@@ -21,6 +21,6 @@
 #define I2C_MODE           I2C_MASTER
 #define F_CPU              16000000UL
 #define I2C_SPEED          200           //KHZ
-#define I2C_PRESCALER      _4_PRESCALER   
+#define I2C_PRESCALER      NO_PRESCALER
 
 #endif

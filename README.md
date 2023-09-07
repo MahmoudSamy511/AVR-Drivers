@@ -49,6 +49,8 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
    **`7. UART Driver:`** For UART serial communication with other devices.
 
    **`8. SPI Driver:`** For Serial Peripheral Interface Communication with other devices.
+
+  **`9. I2C[TWI] Driver:`** For two wire interface Communication with other devices.
   ## HAL Layer
    **`1. LCD:`** For interfacing with Liquad Crystal Display 2X16 (lm016l).
       
@@ -61,6 +63,8 @@ Before using the AVR drivers for ATmega32, make sure you have the following:
    **`5. Stepper Motor:`** For interfacing with Stepper Motors.
 
    **`6. Servo Motor:`** For interfacing with Servo Motor.
+
+   **`7. EEPROM:`** For interface with external EEPROM.
   ## LIB Layer
    **`1-TYPEDEF.h`** a file has redefined types like (Unsigned char --> u8 ,..).
    
