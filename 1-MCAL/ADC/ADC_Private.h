@@ -28,9 +28,9 @@
 #define ADPS1                           1
 #define ADPS0                           0
 /********************* Bits Of SFOIR Register ***************************/
-#define ADTS2                           2
-#define ADTS1                           1
-#define ADTS0                           0
+#define ADTS2                           7
+#define ADTS1                           6
+#define ADTS0                           5
 /************************** ADC Channels *********************************/
 #define ADC_U8_CHANNEL0                 0
 #define ADC_U8_CHANNEL1                 1

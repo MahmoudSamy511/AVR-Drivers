@@ -36,7 +36,7 @@
 /******************Choose Referance Voltage**********************/
 #define ADC_REF_VOLTAGE                     AVCC               
 /******************Choose Conversion Mode**********************/
-#define ADC_CONVERSION_MODE                 DISABLE_AUTO_TRIGG               
+#define ADC_CONVERSION_MODE                 DISABLE_AUTO_TRIGG
 /******************Choose Presentation Mode**********************/
 #define ADC_PRESENTATION_MODE               RIGHT_ADJUST               
 /******************Choose Division Factor**********************/
