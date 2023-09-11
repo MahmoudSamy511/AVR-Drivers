@@ -53,17 +53,24 @@
 #define TOV1                            2       
 #define ICES1                           6       
 #define TICIE1                          5       
-/***************************Protypes Of ISR(Timer0) Functions*********************/
-void __vector_10(void)    __attribute__((signal));
-void __vector_11(void)    __attribute__((signal));
-/***************************Protypes Of ISR(Timer1) Functions*********************/
-void __vector_7(void)    __attribute__((signal));
-void __vector_8(void)    __attribute__((signal));
-void __vector_9(void)    __attribute__((signal));
+/*****************************Timer2 Registers Addresses*********************/
+#define TIMER2_TCCR2_REG           *((volatile u8 *)0x45)
+#define TIMER2_TCNT2_REG           *((volatile u8 *)0x44)
+#define TIMER2_OCR2_REG            *((volatile u8 *)0x43)
+/*****************************Timer2 Registers Bits*********************/
+#define WGM21                           3
+#define WGM20                           6
+#define COM20                           4
+#define COM21                           5
+#define TOIE2                           6
+#define OCIE2                           7
+#define TOV2                            6
+#define OCF2                            7
 /*****************************Options Macros**********************/
 #define TIMER0                                      0                     
 #define TIMER1                                      1
-        
+#define TIMER2                                      2 
+
 #define COMPARE_UNIT_A                              0
 #define COMPARE_UNIT_B                              1
         
