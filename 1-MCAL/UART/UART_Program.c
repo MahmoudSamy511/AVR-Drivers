@@ -13,7 +13,10 @@
 #include"UART_Private.h"
 static void(*UART_pf_TX)(void) =NULL;
 static void(*UART_pf_RX)(void) =NULL;
-static u8 *UART_pu8_String = NULL;
+static u8 UART_u8_BusyFlag = 0;
+volatile static u8 UART_u8_MessageSize = 0;
+volatile static u8 *UART_pu8_String = NULL;
+volatile u8  UART_u8_Counter = 0;
 
 ES_t UART_enu_Init(void){
     u16 Local_u16_UBRRValue = 0;
@@ -161,10 +164,42 @@ ES_t UART_enu_sendNUmber(s32 Copy_s32_Num){
     }
     return STATE_OK;
 }
+ES_t UART_enu_receiveStringWithInterrrupt(u8 *Copy_pu8_recievedString,void(*pf_Notification)(void),u8 Copy_u8_messageSize){
+    u8 Local_u8_errorState = STATE_OK;
+    if((Copy_pu8_recievedString != NULL)&&(pf_Notification != NULL)&&(!UART_u8_BusyFlag)){
+        //Set Busy Flag 
+        UART_u8_BusyFlag = 1;
+         //Set Global Pointer 
+        UART_pf_RX = pf_Notification;
+        //Set Global Message Size 
+        UART_u8_MessageSize = Copy_u8_messageSize;
+        //Set Global Pointer To  String
+        UART_pu8_String = Copy_pu8_recievedString;
+        //Check The Flag & Read The First Byte
+        if(GET_BIT(UART_UCSRA_REG,RXC)){
+            Copy_pu8_recievedString[UART_u8_Counter] = UART_UDR_REG;
+            UART_u8_Counter++;
+        }
+        //Enable Interrupt
+        SET_BIT(UART_UCSRB_REG,RXCIE);
+    }else{
+        Local_u8_errorState = STATE_NOT_OK;
+    }
+    return Local_u8_errorState;
+}
 /*************ISR(Recieve)**********/
 ISR(UART_RX){
-    if(UART_pf_RX != NULL)
-        UART_pf_RX();
+    if(UART_u8_Counter < UART_u8_MessageSize){
+        UART_pu8_String[UART_u8_Counter] = UART_UDR_REG;
+        UART_u8_Counter++;
+    }else{
+        UART_u8_BusyFlag = 0;
+        UART_pu8_String[UART_u8_Counter] = '\0';
+        CLR_BIT(UART_UCSRB_REG,RXCIE);
+        UART_u8_Counter = 0;
+        if(UART_pf_RX != NULL)
+            UART_pf_RX();
+    }
 }
 /*************ISR(Transmit)**********/
 ISR(UART_TX){
