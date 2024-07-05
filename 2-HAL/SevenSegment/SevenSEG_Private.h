@@ -7,12 +7,7 @@
 #ifndef SEVENSEG_PRIVATE_H
 #define SEVENSEG_PRIVATE_H
 
-#define MASK_BIT                1
-
-#define COMMON_ANODE            1
-#define COMMON_CATHODE          0
-#define FARES_KIT               2
-
-
+#define MASK_BIT                0x01
+#define SEVEVN_SEGMENTS_MAX_NUM 10
 
 #endif
